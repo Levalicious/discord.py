@@ -47,7 +47,7 @@ from typing import (
     Union,
 )
 
-from ._types import _BaseCommand, BotT
+from ._types import _BaseCommand, _Bot
 
 if TYPE_CHECKING:
     from typing_extensions import Self
@@ -159,6 +159,7 @@ class CogMeta(type):
         .. versionadded:: 2.1
     """
 
+    __cog_bot__: _Bot | None
     __cog_name__: str
     __cog_description__: str
     __cog_group_name__: Union[str, app_commands.locale_str]
