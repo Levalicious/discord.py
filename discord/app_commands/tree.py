@@ -1063,7 +1063,7 @@ class CommandTree(Generic[ClientT]):
             await translator.load()
             self._state._translator = translator
 
-    async def sync(self, *, guild: Optional[Snowflake] = None) -> List[AppCommand]:
+    async def sync(self, *, guild: Optional[Snowflake] = None, passGuild: bool = True) -> List[AppCommand]:
         """|coro|
 
         Syncs the application commands to Discord.
@@ -1103,7 +1103,7 @@ class CommandTree(Generic[ClientT]):
         if self.client.application_id is None:
             raise MissingApplicationID
 
-        commands = self._get_all_commands(guild=guild)
+        commands = self._get_all_commands(guild=(guild if passGuild else None))
 
         translator = self.translator
         if translator:
